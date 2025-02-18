@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { Text, View } from "react-native";
 
 export default function Index() {
@@ -12,6 +13,7 @@ export default function Index() {
       <Text className="font-bold text-lg">
         Easy does it Samuel . We gonna win this.
       </Text>
+      <Link href={"/(tabs)/home"}> go to home</Link>
     </View>
   );
 }
