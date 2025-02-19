@@ -1,7 +1,8 @@
-import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
+import { useRouter } from "expo-router";
 
 export default function Index() {
+  const router = useRouter();
   return (
     <View
       style={{
@@ -10,10 +11,15 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text className="font-bold text-lg">
-        Easy does it Samuel . We gonna win this.
-      </Text>
-      <Link href={"/(tabs)/home"}> go to home</Link>
+      <Text className="font-bold text-lg">Entry Screen.</Text>
+      <Button
+        title="Go to Welcome page"
+        onPress={() => router.push("/(auth)/welcome")}
+      />
+      <Button
+        title="Go to main content"
+        onPress={() => router.push("/(tabs)/home")}
+      />
     </View>
   );
 }
