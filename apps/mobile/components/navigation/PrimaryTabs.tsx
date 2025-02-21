@@ -22,9 +22,11 @@ const hp = (percentage) => {
 const PrimaryTabs = ({ state, descriptors, navigation }) => {
   const getBaseRouteName = (routeName) => routeName.split("/")[0];
   const icons = {
-    home: (props) => <House color="black" size={hp(2.5)} {...props} />,
-    connect: (props) => <UserRound color="black" size={hp(2.5)} {...props} />,
-    communities: (props) => (
+    feed: (props) => <House color="black" size={hp(2.5)} {...props} />,
+    connections: (props) => (
+      <UserRound color="black" size={hp(2.5)} {...props} />
+    ),
+    community: (props) => (
       <UsersRound color="black" size={hp(2.5)} {...props} />
     ),
     wellness: (props) => (
@@ -37,13 +39,14 @@ const PrimaryTabs = ({ state, descriptors, navigation }) => {
         {state.routes.map((route, index) => {
           // Learn what descriptors do. i can see it is being destructured
           const { options } = descriptors[route.key];
-          const baseRouteName = getBaseRouteName(route.name);
+          //const baseRouteName = getBaseRouteName(route.name);
+          console.log("here is the route name", route.name);
           const label =
             options.tabBarLabel !== undefined
               ? options.tabBarLabel
               : options.title !== undefined
                 ? options.title
-                : baseRouteName;
+                : route.name;
           //current foucused state
           const isFocused = state.index === index;
           const onPress = () => {
@@ -63,13 +66,8 @@ const PrimaryTabs = ({ state, descriptors, navigation }) => {
               onPress={onPress}
               style={styles.tab}
             >
-              {icons[baseRouteName] &&
-                icons[baseRouteName]({ focused: isFocused })}
-              <Text
-                style={{ color: isFocused ? "#673ab7" : "#222", marginTop: 4 }}
-              >
-                {label}
-              </Text>
+              {icons[route.name] &&
+                icons[route.name]({ focused: isFocused ? "true" : "false" })}
             </TouchableOpacity>
           );
         })}
