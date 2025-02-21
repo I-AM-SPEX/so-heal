@@ -18,7 +18,7 @@ export default function Index() {
       />
       <Button
         title="Go to main content"
-        onPress={() => router.push("/(tabs)/home")}
+        onPress={() => router.push("/(tabs)/feed/screens")}
       />
     </View>
   );
